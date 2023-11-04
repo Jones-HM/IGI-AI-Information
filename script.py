@@ -71,8 +71,11 @@ def analyze_and_plot_level_data(level_data):
         df_graphs = pd.DataFrame(data_rows)
 
         # Display the DataFrame in Streamlit
-        st.subheader("Graph Information")
-        st.table(df_graphs)
+        st.sidebar.title("Settings")
+        display_graph_info = st.sidebar.checkbox("Graph Information", value=True)
+        if display_graph_info:
+            st.subheader("Graph Information")
+            st.table(df_graphs)
 
         # Prepare a dictionary for level information
         level_info = {
@@ -85,8 +88,10 @@ def analyze_and_plot_level_data(level_data):
         df_level = pd.DataFrame(level_info, index=[0])
 
         # Display the DataFrame in Streamlit
-        st.subheader("Level Information")
-        st.table(df_level)
+        display_level_info = st.sidebar.checkbox("Level Information", value=True)
+        if display_level_info:
+            st.subheader("Level Information")
+            st.table(df_level)
 
         # Plotting the distribution of soldiers across the different graphs
     
