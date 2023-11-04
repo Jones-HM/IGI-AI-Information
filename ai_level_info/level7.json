@@ -608,19 +608,6 @@
         }
     },
     {
-        "Soldier ID": 2004,
-        "Position X": -6553766.0,
-        "Position Y": 90266632.0,
-        "Position Z": 174767104.0,
-        "Angle": 0.0,
-        "Model ID": "EditVariable_2004.nValue == 0 &&\\n(\\n HumanSoldier_401.isDead || HumanSoldier_403.isDead\\n",
-        "AI ID": 0,
-        "AI Type": "nan",
-        "Graph ID": 0,
-        "Model Name": "Unknown",
-        "Graph Name": "Unknown"
-    },
-    {
         "Soldier ID": 1834,
         "Position X": -9067339.0,
         "Position Y": 92365256.0,

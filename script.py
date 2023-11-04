@@ -48,16 +48,45 @@ def analyze_and_plot_level_data(level_data):
                 ai_graph_names[entry['Graph ID']].append(entry['AI Type'])
         names_of_ai_on_each_graph = {f"Graph ID {graph_id}": ', '.join(names) for graph_id, names in ai_graph_names.items()}
 
-        # Writing the data as JSON and outputting it in Streamlit
-        data = {
-            "Total number of AI in level": total_ai,
-            "Total number of unique AI types": unique_ai_types,
-            "Total number of graphs": total_graphs,
-            "Number of AI on each graph": ai_on_each_graph,
-            "Names of AI on each graph": names_of_ai_on_each_graph
+        # Prepare a list of dictionaries, each representing a row in the DataFrame
+        data_rows = []
+        processed_graph_ids = set()  # To keep track of processed graph_ids
+        for entry in level_data:
+            if entry['Graph ID'] not in processed_graph_ids:
+                row = {
+                    "Graph": entry['Graph ID'],
+                    "AI Type": ', '.join([name.replace('AITYPE_', '') for name in ai_graph_names.get(entry['Graph ID'], [])]),
+                    "Soldier ID": entry['Soldier ID'],
+                    "X": float(entry['Position X']),
+                    "Y": float(entry['Position Y']),
+                    "Z": float(entry['Position Z']),
+                    "Model ID": entry['Model ID'],
+                    "AI ID": entry['AI ID'],
+                    # Add more fields here as needed
+                }
+                data_rows.append(row)
+                processed_graph_ids.add(entry['Graph ID'])  # Mark this graph_id as processed
+
+        # Create a DataFrame from the list of dictionaries
+        df_graphs = pd.DataFrame(data_rows)
+
+        # Display the DataFrame in Streamlit
+        st.subheader("Graph Information")
+        st.table(df_graphs)
+
+        # Prepare a dictionary for level information
+        level_info = {
+            "Total AI in level": total_ai,
+            "Total unique AI types": unique_ai_types,
+            "Total graphs": total_graphs,
         }
-        st.json(data)
-        
+
+        # Create a DataFrame from the dictionary
+        df_level = pd.DataFrame(level_info, index=[0])
+
+        # Display the DataFrame in Streamlit
+        st.subheader("Level Information")
+        st.table(df_level)
 
         # Plotting the distribution of soldiers across the different graphs
     
@@ -92,13 +121,13 @@ def analyze_and_plot_level_data(level_data):
             st.pyplot(fig)
 
             # Histogram of the angles to see if there's a common orientation for the soldiers
-            st.subheader("Histogram of Soldiers' Angles")
+            st.subheader("Histogram of Soldiers Angles")
             fig, ax = plt.subplots()
             sns.histplot(angles, bins=30, kde=False, ax=ax)
             st.pyplot(fig)
 
-    except Exception as e:
-        st.error(f"An error occurred: {e}")
+    except Exception as exception:
+        st.error(f"An error occurred: {exception}")
 
 # Main method to handle file upload and call analysis functions
 def main():

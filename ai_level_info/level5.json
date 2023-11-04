@@ -739,18 +739,5 @@
             "Y": 1136.622802734375,
             "Z": -267.70306396484375
         }
-    },
-    {
-        "Soldier ID": 661,
-        "Position X": -26116618.0,
-        "Position Y": -35508224.0,
-        "Position Z": 180666032.0,
-        "Angle": 0.0,
-        "Model ID": "EditVariable_661.nValue == 0 &&\\nHumanSoldier_2025.isDead &&\\nHumanSoldier_2026.isDead &&\\nHumanSoldier_2024.isDead &&\\nHumanSoldier_2023.isDead &&\\nHumanSoldier_2022.isDead",
-        "AI ID": 0,
-        "AI Type": "nan",
-        "Graph ID": 0,
-        "Model Name": "Unknown",
-        "Graph Name": "Unknown"
     }
 ]

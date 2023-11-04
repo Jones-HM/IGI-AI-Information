@@ -703,19 +703,6 @@
         }
     },
     {
-        "Soldier ID": 1002,
-        "Position X": 7704654.5,
-        "Position Y": 152753376.0,
-        "Position Z": 174440624.0,
-        "Angle": 0.0,
-        "Model ID": "0",
-        "AI ID": 0,
-        "AI Type": "nan",
-        "Graph ID": 0,
-        "Model Name": "Unknown",
-        "Graph Name": "Unknown"
-    },
-    {
         "Soldier ID": 403,
         "Position X": 9128775.0,
         "Position Y": 152506592.0,
